@@ -1,9 +1,7 @@
-ARG FROM_TAG=16.04
+ARG FROM_TAG=14.04
 FROM ubuntu:$FROM_TAG
 LABEL maintainer="Richard Kjerstadius"
 LABEL description="Container for Yocto development on FLIR camera platforms"
-
-ADD http://se-arn-dev5.zone2.flir.net/pingu/ubuntusources_swe.list /etc/apt/sources.list
 
 # Workaround for the fact that any ARG declared before FROM is outside of a
 # build stage and therefore not visible inside the build stage.
@@ -75,20 +73,6 @@ RUN if [ "$FROM_TAG" = "18.04" ]; then \
         && $APT_CLEAN_CMD ; \
     fi
 
-# Install FLIR certificates
-RUN cd /usr/local/share/ca-certificates && \
-    wget -O rootca.crt http://se-arn-ubtmirr.zone2.flir.net/esw/certs/rootca.cer && \
-    wget -O flir-orca.crt http://se-arn-ubtmirr.zone2.flir.net/esw/certs/flir-orca.cer && \
-    /usr/sbin/update-ca-certificates
-
-# Get Perforce client CLI
-RUN wget http://www.perforce.com/downloads/perforce/r19.1/bin.linux26x86_64/helix-core-server.tgz && \
-    mkdir perforce-bin && \
-    tar xvf helix-core-server.tgz -C perforce-bin && \
-    cp perforce-bin/p4 /usr/bin/. && \
-    chmod +x /usr/bin/p4 && \
-    rm -rf helix-core-server.tgx perforce-bin
-
 RUN locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
@@ -103,7 +87,7 @@ ARG GID=2112
 RUN groupadd -g $GID $USERNAME && \
     useradd --no-log-init -g $GID -u $UID -m $USERNAME
 
-RUN sed -i 's/^PS1.*/PS1=\"\\[\\033\[01;34m\\]ubuntu:\\W \\[\\033\[00m\\]$ \"/g' /etc/bash.bashrc
+#RUN sed -i 's/^PS1.*/PS1=\"\\[\\033\[01;34m\\]ubuntu:\\W \\[\\033\[00m\\]$ \"/g' /etc/bash.bashrc
 USER $USERNAME
 
 CMD ssh-agent /bin/bash

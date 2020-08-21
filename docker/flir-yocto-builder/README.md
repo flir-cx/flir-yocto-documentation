@@ -4,38 +4,41 @@ flir-yocto-builder
 Overview
 --------
 This container is intended for building Yocto projects in a containerized
-Ubuntu environment. The container works with both `docker` and
+Ubuntu environment. The container should work with both `docker` and
 [`podman`](https://podman.io).
+(poorly tested with podman)
 
 Build
 -----
-Start by choosing what Ubuntu version you want to use as the baseline. Projects
-based on Yocto 2.5 or newer should use Ubuntu 16.04 (which is also the
-default). Older projects should use 14.04. For more detailed information about
-what products use what versions, consult the table below.
+Default used ubuntu version is 14.04. FLIR flir-cx build is successfully tested
+with this configuration. (also tested with ubuntu 16.04) 
 
-| Ubuntu Version | Yocto Version | Product(s)            |
-|----------------|---------------|-----------------------|
-| 14.04          | 2.0           | Rocky, Evander/Lennox |
-| 16.04          | 2.5           | Sherlock              |
-| 18.04\*        | 2.7           | FLIR One Gen 4        |
-
-\* *Required because of a depency on* `xxd` *in meta-atmel*
-
-Use the following command to build the container locally. Be sure to set the
-FROM_TAG and container tag appropriately (16.04 is used in the example). Note
-that there are extra arguments to ensure that the `yoctobuild` user inside the
-container has the same user and group ID as the user who builds the image.
+Use the following command to build the container locally. 
+Note that there are extra arguments to ensure that the `yoctobuild` user 
+inside the container has the same user and group ID as the user who builds 
+the image.
 This in turn avoids permission problems with the build output.
 
 ~~~console
+$ docker build \
+    -t flir-yocto-builder \
+    --build-arg GID=$(id -g) \
+    --build-arg UID=$(id -u) \
+    .
+
+(OR
+
 $ docker build \
     -t flir-yocto-builder:16.04 \
     --build-arg FROM_TAG=16.04 \
     --build-arg GID=$(id -g) \
     --build-arg UID=$(id -u) \
     .
+)
 ~~~
+
+(It should be possible to use other Ubuntu versions 14,16,18 when using
+2:nd syntax. Refer to Dockerfile content for details)
 
 Note: One can also use `buildah` to build the container by simply replacing
 `docker build` with `buildah bud`. Also, **regardless of the tool, do not
@@ -47,12 +50,36 @@ To run the container as an interactive session where it's possible to build
 Yocto projects, use the following command:
 
 ~~~console
-$ docker run --rm -it \
-    -v "$PWD":/code \
+cd <your yocto project root>
+docker run --rm -it \
+    -v "$PWD":/"$PWD" \
+    -w "$PWD" \
+    flir-yocto-builder
+
+OR:
+
+cd <your yocto project root>
+docker run --rm -it --user $(id -u):$(id -g) \
+    -v "$PWD":/"$PWD" \
     -v ~/.ssh:/home/yoctobuild/.ssh \
-    -w /code \
-    flir-yocto-builder:16.04
+    -w "$PWD" \
+    flir-yocto-builder
 ~~~
+
+(note the arguments; 
+--user argument maps generated files owner to host owner. Not needed if 
+the docker image was built on the same computer
+first "-v" makes docker build and host built result compatible 
+second -v is optional (if you like to fetch code inside container
+)
+
+When run like this, yocto build could be managed from the shell prompt
+For a flir-cx opensource yocto environment, typically as;
+~~~console
+MACHINE=ec201 source ./flir-setup-release.sh -b build_ec201
+bitbake flir-image-sherlock
+~~~
+(bitbake could be done for any present recipes)
 
 Note that depending on the exact setup of your Yocto project, it might be
 necessary, or at least convenient, to add your ssh key to `ssh-agent`, such
@@ -70,47 +97,11 @@ should be added to ensure correct ownership of files created by the container.
 The `run` command should end up similar to this:
 
 ~~~console
-$ podman run --rm -it \
+$ podman run --rm -it --user $(id -u):$(id -g) \
     --userns=keep-id \
-    -v $PWD:/code \
+    -v $PWD:/"$PWD" \
     -v ~/.ssh:/home/yoctobuild/.ssh \
-    -w /code \
-    localhost/flir-yocto-builder:16.04
+    -w "$PWD" \
+    localhost/flir-yocto-builder
 ~~~
 
-
-Bash Alias examples
---------
-
-Add to .bash_alias. Need to create .docker_bash_history file first for bash history to work
-
-~~~console
-alias docker16='docker run --rm -it --network=host \
-    -v "$PWD":/code \
-    -v ~/.ssh:/home/yoctobuild/.ssh \
-    -v ~/.docker_bash_history:/home/yoctobuild/.bash_history \
-    -w /code \
-    flir-yocto-builder:16.04'
-
-alias dockeraosp='docker run --rm -it --network=host \
-    -v "$PWD":/code \
-    -v ~/.ssh:/home/yoctobuild/.ssh \
-    -v ~/.docker_bash_history:/home/yoctobuild/.bash_history \
-    -w /code \
-    aosp-builder'
-~~~
-
-Problems
---------
-
-DNS
------
-The system may not use localhost as it's dns resolver, having this makes the
-docker unable to resolve names, probably since the docker network is in a
-different namespace.
-
-
-e.g. /etc/resolv.conf should not contain
-~~~/etc/resolv.conf
-nameserver 127.0.0.1
-~~~
