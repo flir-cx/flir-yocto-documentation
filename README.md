@@ -41,7 +41,7 @@ Closed source licenses apply to:
 These parts are distributed in binary form (at factory) and are installed into the FLIR C5 non-volatile memory.
 
 Open source for FLIR C5 is accessed using the [meta-flir-openmanifest](https://github.com/flir-cx/flir-yocto-openmanifest.git) repo (and applying proper commands). 
-Anyone are allowed to download, study and possibly build artifacts from the provided source.
+Anyone is allowed to download, study and possibly build artifacts from the provided source.
 
 To be able to install and run the built artifacts on a target device (i.e. FLIR C5), the specific device needs to be 'unlocked'. (see below)
 
@@ -68,7 +68,7 @@ Other linux distributions (that supports yocto development) might work, but is n
 #### docker based build<br>
 To isolate host distribution dependencies, a [docker](https://en.wikipedia.org/wiki/Docker_(software)) image is provided (part of this documentation repository)<br>
 See [flir-yocto-builder docker](https://github.com/flir-cx/flir-yocto-documentation/blob/master/docker/flir-yocto-builder/README.md) for usage.<br>
-This image is based upon ubuntu 16 and has all necessary, additional .deb packages (needed for a yocto build) preinstalled.
+This image is based upon ubuntu 14 and has all necessary, additional .deb packages (needed for a yocto build) preinstalled.
 
 To use it for building:
 - Install docker environmant on your local host
@@ -83,7 +83,7 @@ Run (while in root of local build environment):
 ~~~console
 MACHINE=ec201 source ./flir-setup-release.sh -b build_ec201
 ~~~
-(creates sub folder *build_ec201* if not present before and initiates it. First time you need to approve a license agreement. "current working directory" will also be set to build_ec201 )
+(creates sub folder *build_ec201* if not present before and initiates it. First time you need to approve a license agreement. "current working directory" will also be set to _build_ec201_ )
 
 Now it is possible to build code for the "ec201" using *bitbake* commands. Implicitely needed artifacts will be built when needed.<br>
 Main build target would be *flir-image-sherlock*. (i.e. *bitbake flir-image-sherlock*) This recipe will build almost all components, including the linux kernel and a standard populated rootfs. 
@@ -94,8 +94,10 @@ Other targets than *flir-image-sherlock* might be built. Study the yocto source 
 Target connection
 -----------------
 To download and execute generated code on a FLIR cx target, A USB connection is recommended.<br>
+Wi-Fi is also supported, See [WiFi backdoor to target device](https://github.com/flir-cx/flir-yocto-documentation/blob/master/backdoor.md)<br>
+
 #### Warning:
-However, note that to access the FLIR C5 device as a developer, you will need to _unlock_ the device. Even if possible, this is **NOT** recommended.<br>
+Note: To access the FLIR C5 device as a developer, you will need to _**unlock**_ the device. Even if possible, this is **NOT** recommended.<br>
 You will be on your own, product warranty will be limited.<br>
 FLIR cannot take responsibility for the software quality anymore if uncontrolled software has been installed onto the device. Even if nothing is installed, this will be impossible to tell if the device has been unlocked.
 
@@ -104,7 +106,7 @@ If you still want to connect to your device as a developer, please read more in 
 
 Target software disk layout
 ---------------------------
-The "disk"on the ec201 board is equipped with a 8 MB eMMC.
+The "disk"on the ec201 board is actually a 4 MB eMMC.
 This "disk" is partitioned as:
 
 ~~~console
@@ -143,7 +145,7 @@ none on / type overlay (rw,relatime,lowerdir=/tmp/aufs/rofs,upperdir=/tmp/aufs/r
 /dev/mmcblk0p7 on /srv/sftp type ext4 (rw,relatime,data=ordered)
 root@ec201-0A13DC:~# 
 ~~~
-Note that the root filesystem (rootfs) is mounted as an overlay file system.<br>
+Note that the root filesystem ("none on / ") is mounted as an overlay file system.<br>
 Partition 2 and 3 contains 2 versions of a readonly .ext4 image (from flir-image-sherlock). <br>
 On top of this there is a "overlay" "rw" file system that contains changes to the base image.<br>
 /FLIR mount points contains FLIR camera application + data (closed source).<br>

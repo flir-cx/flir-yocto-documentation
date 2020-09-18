@@ -26,13 +26,13 @@ Switching USB mode (to RNDIS) requires some special steps.
 The one described here involves performing a request for a "unlock tool" for
 the specific camera from FLIR.<br>
 Contact FLIR service<br>
-You should then receive a special able of "unlocking" the FLIR Cx specific serial number.<br>
+You should then receive a special installer file, able of "unlocking" the FLIR Cx specific serial number.<br>
 Typical file name; _FLIR_oss_unlocker_1.1_894001234.run_ 
 
 #### Unlock caveat
-Note that although it is possible to unlock a (FLIR Cx) device for development, it is **NOT** recommended.<br>
+**Note:** Although it is possible to unlock a (FLIR Cx) device for development, it is **NOT** recommended.<br>
 By unlocking the device, **warranty will be limited**, even if no additional steps to change software content is taken.<br>
-Although it should be possible to re-lock the device by a certified FLIR service center, this will come with a charge.
+Although it should be possible to re-lock the device by a certified FLIR service center, this will come at a charge.
 
 #### unlock tool installation
 If you still want to unlock the (FLIR cx) device, here follows a description on how to do this:
@@ -50,7 +50,7 @@ Also, the root password is set to **0pened** (character "zero" instead of letter
 
 #### Host computer ip setup
 
-When _unlocker_ file has been installed, it should now be possible to login to the device using ssh.<br>
+When _unlocker_ file has been installed, it should now be possible to login as _root_ to the device using ssh.<br>
 First, we need to establish a ip network to the camera device also on the host side.<br>
 For linux hosts, better run host command _dmesg_ to check that a RNDIS device is registered.<br>
 (usb0 should be the interface name on ubuntu/linuxmint. Other linux distributions might give another name to the usb network adapter.)<br>
@@ -148,10 +148,12 @@ On the host, make sure that you have ssh (for instance _openssh-client_) install
 
 
 #### Check connection
-After reboot, check that you are able to login using ssh to root@192.168.250.2 and your own root password every time.
+After reboot, check that you are able to login using ssh to root@192.168.250.2 and **your own** root password every time.
 
 #### Restore USB RNDIS mode
 Avoid changing USB mode from graphical user interface (or by command).<br>
 If you do this by mistake, it should be possible to restore USB RNDIS using unlocker tool again.<br>
 You should then only need to install _unlocker_ file to get a working RNDIS connection<br>
 Then login and run command _reboot_ to get a permanent USB RNDIS again.
+
+(You may also want to take a look at [WiFi backdoor to target device](https://github.com/flir-cx/flir-yocto-documentation/blob/master/backdoor.md))<br>
