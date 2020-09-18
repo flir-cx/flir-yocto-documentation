@@ -136,7 +136,7 @@ root@ec201-0A13DC:~#
 
 ## Installing .ipk packages
 
-**Before** trying to install/change any packages, please check out [WiFi backdoor to target device](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/backdoor.md)<br>
+**Before** trying to install/change any packages, please check out [WiFi backdoor to target device](https://github.com/flir-cx/flir-yocto-documentation/blob/master/backdoor.md)<br>
 
 #### Listing installed packages
 Command _opkg list_ will list the known packages installed.<br>
@@ -146,7 +146,7 @@ appkit - 1.0.5-r280860
 prodkit - 1.0.3.15-r280286
 root@ec201-0A13DC:~#
 ~~~
-As stated previously, all pre-populated packages in _flir-image-sherlock_ are missing here ([even if installed](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/README.md#rootfs-installable-packages)).<br>
+As stated previously, all pre-populated packages in _flir-image-sherlock_ are missing here ([even if installed](https://github.com/flir-cx/flir-yocto-documentation/blob/master/README.md#rootfs-installable-packages)).<br>
 
 #### File transfer to target
 To install a package, start by transfering its .ipk file to the target.<br>

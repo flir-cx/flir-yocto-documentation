@@ -67,7 +67,7 @@ Other linux distributions (that supports yocto development) might work, but is n
 
 #### docker based build<br>
 To isolate host distribution dependencies, a [docker](https://en.wikipedia.org/wiki/Docker_(software)) image is provided (part of this documentation repository)<br>
-See [flir-yocto-builder docker](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/docker/flir-yocto-builder/README.md) for usage.<br>
+See [flir-yocto-builder docker](https://github.com/flir-cx/flir-yocto-documentation/blob/master/docker/flir-yocto-builder/README.md) for usage.<br>
 This image is based upon ubuntu 16 and has all necessary, additional .deb packages (needed for a yocto build) preinstalled.
 
 To use it for building:
@@ -100,7 +100,7 @@ You will be on your own, product warranty will be limited.<br>
 FLIR cannot take responsibility for the software quality anymore if uncontrolled software has been installed onto the device. Even if nothing is installed, this will be impossible to tell if the device has been unlocked.
 
 #### Connection:
-If you still want to connect to your device as a developer, please read more in [USB RNDIS and shell connection](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/rndis.md)<br>
+If you still want to connect to your device as a developer, please read more in [USB RNDIS and shell connection](https://github.com/flir-cx/flir-yocto-documentation/blob/master/rndis.md)<br>
 
 Target software disk layout
 ---------------------------
@@ -159,20 +159,20 @@ It is possible to replace single or multiple package(s), or even replace the com
 Specifically this is true for GPLv3/LGPLv3 licensed packages.<br>
 (Typically _umtp_responder_, _bash_ shell and _Qt libraries_.)<br>
 
-To find out which packages are really installed into _flir-image-sherlock_ (and thus replaceable), generate your own package database using information as described by: [package management addition to rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/package-management-addition.md).<br>
+To find out which packages are really installed into _flir-image-sherlock_ (and thus replaceable), generate your own package database using information as described by: [package management addition to rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/master/package-management-addition.md).<br>
 
 #### rootfs
 As indicated, build of a "flir-image-sherlock" will generate an artifact (_flir-image-sherlock.ext4_) that could be used to replace the complete base image within rootfs1/rootfs2.
 This image file will contain a linux kernel, device tree and a populated rootfs.
 
-See [replace-rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/replace-rootfs.md) for details.<br>
+See [replace-rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/master/replace-rootfs.md) for details.<br>
 However, replacing the complete rootfs is **NOT** recommended (even if it technically has been tested at FLIR and "should" work).
 - You will lose the non-public parts of the rootfs.<br>
 - If your generated binary .ext4 file is "bad", or if installation fails for some reason, it is likely that you will brick your device.
 
 #### u-boot
 Will be generated implicitely by running _bitbake flir-image-sherlock_ or by explicitely running: _bitbake u-boot_<br>
-See [replace-u-boot](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/replace-u-boot.md) for details.<br>
+See [replace-u-boot](https://github.com/flir-cx/flir-yocto-documentation/blob/master/replace-u-boot.md) for details.<br>
 However, replacing u-boot is **NOT** recommended (even if it technically has been tested at FLIR and "should" work).
 - If your generated binary u-boot.imx file is "bad", wrong file used or if installation fails for some reason, it is likely that you will brick your device.
 
@@ -199,10 +199,10 @@ root@ec201-0A13DC:~#
 These 2 packages are added on top of the installed rootfs, thus visible.<br>
 (Occupied disk space for the opkg database is now ~60K.)
 
-To add/check what a pre-populated opkg database would look like, you may want to look at [package management addition to rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/package-management-addition.md).<br>
+To add/check what a pre-populated opkg database would look like, you may want to look at [package management addition to rootfs](https://github.com/flir-cx/flir-yocto-documentation/blob/master/package-management-addition.md).<br>
 
 ##### Installing/replacing packages in device
-See [Working with packages](https://github.com/flir-cx/flir-yocto-documentation/blob/prework/working-with-packages.md) about building and installing ipk packages to your target.<br>
+See [Working with packages](https://github.com/flir-cx/flir-yocto-documentation/blob/master/working-with-packages.md) about building and installing ipk packages to your target.<br>
 
 #### Non open source parts of FLIR C5
 Note that the "camera application" that makes the FLIR C5 work as an infrared camera is **NOT** open source.<br>
