@@ -156,4 +156,4 @@ If you do this by mistake, it should be possible to restore USB RNDIS using unlo
 You should then only need to install _unlocker_ file to get a working RNDIS connection<br>
 Then login and run command _reboot_ to get a permanent USB RNDIS again.
 
-(You may also want to take a look at [WiFi backdoor to target device](https://github.com/flir-cx/flir-yocto-documentation/blob/master/backdoor.md))<br>
+(You may also want to take a look at [WiFi backdoor to target device](backdoor.md))<br>

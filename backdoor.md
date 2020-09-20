@@ -20,7 +20,7 @@ Connect to the same Wi-Fi network on your host computer.<br>
 Try: _ssh root@\<camera wifi ip\>_<br>
 (example: _ssh root@192.168.5.22_).<br>
 Login using your password set after you unlocked the device
-(see [USB RNDIS and shell connection](https://github.com/flir-cx/flir-yocto-documentation/blob/master/rndis.md) ).<br>
+(see [USB RNDIS and shell connection](rndis.md) ).<br>
 Make sure that this gives you a prompt, and that you are able to communicate with the device through ssh on wifi connection<br>
 
 
