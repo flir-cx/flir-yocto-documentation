@@ -1,5 +1,6 @@
 flir-cx
 =======
+![FLIR C5 infrared camera](c5.png)
 
 Overview
 --------
