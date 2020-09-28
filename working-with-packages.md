@@ -51,6 +51,9 @@ $
 To find out where the work folder is for a specific package, you may run a special bitbake command in your yocto build shell; _bitbake \<recipe\> **-c devshell**_<br>
 A subshell is then opened inside the work folder of that recipe. Use _pwd_ to find out the location.<br>
 
+#### Packages in target
+Before working with target(s) you need to establish a connect to the target as a developer. Read more about it in [USB RNDIS and shell connection](rndis.md)<br>
+
 #### overlay rootfs understanding
 Before installing any packages into your FLIR C5 device, you should know something on the file system you are installing packages into.<br>
 
@@ -136,7 +139,7 @@ root@ec201-0A13DC:~#
 
 ## Installing .ipk packages
 
-**Before** trying to install/change any packages, please check out [WiFi backdoor to target device](backdoor.md)<br>
+**Before** trying to install/change any packages, please check out [WiFi backup-connection to target device](backup-connection.md)<br>
 
 #### Listing installed packages
 Command _opkg list_ will list the known packages installed.<br>

@@ -4,7 +4,9 @@ When _bitbake flir-image-sherlock_ and/or _bitbake u-boot_ has been successfully
 File is a symlink to _u-boot-ec201-2018.03-r0.imx_, file size is around 400K <br>
 
 ### File transfer to target
-This file should now be transfered to target. 
+(Before working with target(s) you need to establish a connect to the target as a developer. Read more about it in [USB RNDIS and shell connection](rndis.md))<br>
+
+The generated file should now be transfered to target. 
 Typically "/tmp" is a suitable target location. <br>
 ("/tmp" in on a volatile ramdisk, which size is **~245 MB**).
 ~~~console

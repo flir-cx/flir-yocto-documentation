@@ -27,7 +27,7 @@ The one described here involves performing a request for a "unlock tool" for
 the specific camera from FLIR.<br>
 Contact FLIR service<br>
 You should then receive a special installer file, able of "unlocking" the FLIR Cx specific serial number.<br>
-Typical file name; _FLIR_oss_unlocker_1.1_894001234.run_ 
+Typical file name; _FLIR_oss_unlocker_1.2_894001234.run_ 
 
 #### Unlock caveat
 **Note:** Although it is possible to unlock a (FLIR Cx) device for development, it is **NOT** recommended.<br>
@@ -39,7 +39,7 @@ If you still want to unlock the (FLIR cx) device, here follows a description on 
 - Connect camera to a (linux) PC host using USB cable
 - Open _FLIR camera_ file system in a file browser
 - Browse to camera folder _FLIR Camera - Images - doupdate_ 
-- Drag / drop your received unlocker file ( _FLIR_oss_unlocker_1.1_894991234.run_) into this folder (from another file browser instance)<br>
+- Drag / drop your received unlocker file ( _FLIR_oss_unlocker_1.2\_\<serial\>.run_) into this folder (from another file browser instance)<br>
   The unlocker file will now automatically be installed.<br>
   (There is a small instruction file in this location if you like to read more about this)
 - Note that by performing this installation of the unlocker file, you accept the license that comes with it.<br> (in essence: Do not deliberately wipe its install traces, do not try to mess up the FLIR camera application)<br> 
@@ -151,9 +151,9 @@ On the host, make sure that you have ssh (for instance _openssh-client_) install
 After reboot, check that you are able to login using ssh to root@192.168.250.2 and **your own** root password every time.
 
 #### Restore USB RNDIS mode
-Avoid changing USB mode from graphical user interface (or by command).<br>
-If you do this by mistake, it should be possible to restore USB RNDIS using unlocker tool again.<br>
-You should then only need to install _unlocker_ file to get a working RNDIS connection<br>
-Then login and run command _reboot_ to get a permanent USB RNDIS again.
+Avoid changing USB mode.<br>
+If you do this by mistake, here follows some notes about how to restore to RNDIS...<br><br>
+You may try the [WiFi backup-connection to target device](backup-connection.md), and change usbmode using command usbfn (and follow instructions).<br>
 
-(You may also want to take a look at [WiFi backdoor to target device](backdoor.md))<br>
+As an alternative, if MTP is still working as USB mode, you could try to install _unlocker_ file again to get a working RNDIS connection<br>
+Then login and run command _reboot_ to get a permanent USB RNDIS again.

@@ -1,5 +1,5 @@
-WiFi backdoor to target device
-==============================
+WiFi backup connection to target device
+=======================================
 Be aware of that any change to files/packages in the FLIR C5 exposes you to the **risk of losing contact** with the device, or even **make it unusable** (bricked).<br>
 <br>
 One obviuous risk is that USB may stop working.<br>
@@ -13,7 +13,7 @@ One obvious such channel is a wifi connection.<br>
 Provided that the graphical FLIR camera application is running, you should be able to enable WiFi and connect to a network router.<br>
 Enter "Settings", Press "Connections", Select "Wi-Fi", connect to network.<br>
 Select a network that you have the access code to.<br>
-When connected, you may click on the network name and check the IP-adress of the device (on the Wi-Fi network).<br>
+When connected, you may click on the network name and check the IP-address of the device (on the Wi-Fi network).<br>
 
 
 Connect to the same Wi-Fi network on your host computer.<br>
@@ -24,7 +24,7 @@ Login using your password set after you unlocked the device
 Make sure that this gives you a prompt, and that you are able to communicate with the device through ssh on wifi connection<br>
 
 
-Note: established secondary communication backdoor **is no guarantee** that this will continue to work as you manipulate the device.<br>
+Note: established secondary communication backup **is no guarantee** that this will continue to work as you manipulate the device.<br>
 **You are still on your own** should you do changes to the device.<br><br>
 
 ### Switching usb mode, restart usb

@@ -4,7 +4,10 @@ When _bitbake flir-image-sherlock_ has been successfully run, you should find a 
 Size of file is typically **340 MB**<br>
 
 ### File transfer to target
-This file should now be transfered to target and stored in a location big enough to accomodate it.<br>
+(Before working with target(s) you need to establish a connect to the target as a developer. Read more about it in [USB RNDIS and shell connection](rndis.md))<br>
+
+
+Generated file should now be transfered to target and stored in a location big enough to accomodate it.<br>
 Normally "/tmp" is a suitable target location. <br>
 "/tmp" in on a volatile ramdisk, which size is **~245 MB**.
 ~~~console

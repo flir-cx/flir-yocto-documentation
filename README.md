@@ -95,7 +95,7 @@ Other targets than *flir-image-sherlock* might be built. Study the yocto source 
 Target connection
 -----------------
 To download and execute generated code on a FLIR cx target, A USB connection is recommended.<br>
-Wi-Fi is also supported, See [WiFi backdoor to target device](backdoor.md)<br>
+Wi-Fi is also supported, See [WiFi backup-connection to target device](backup-connection.md)<br>
 
 #### Warning:
 Note: To access the FLIR C5 device as a developer, you will need to _**unlock**_ the device. Even if possible, this is **NOT** recommended.<br>
