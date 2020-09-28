@@ -3,7 +3,7 @@ WiFi backup connection to target device
 Be aware of that any change to files/packages in the FLIR C5 exposes you to the **risk of losing contact** with the device, or even **make it unusable** (bricked).<br>
 <br>
 One obviuous risk is that USB may stop working.<br>
-Possibly only that the USB mode is changed - RNDIS not working anymore<br>.
+Possibly only that the USB mode is changed - RNDIS not working anymore.<br>
 Possibly that there is **NO USB at all (!)**<br>
 
 
@@ -19,8 +19,7 @@ When connected, you may click on the network name and check the IP-address of th
 Connect to the same Wi-Fi network on your host computer.<br>
 Try: _ssh root@\<camera wifi ip\>_<br>
 (example: _ssh root@192.168.5.22_).<br>
-Login using your password set after you unlocked the device
-(see [USB RNDIS and shell connection](rndis.md) ).<br>
+Login using your password set after you [unlocked the device](unlock_tool.md).<br>
 Make sure that this gives you a prompt, and that you are able to communicate with the device through ssh on wifi connection<br>
 
 

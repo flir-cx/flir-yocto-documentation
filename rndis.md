@@ -22,31 +22,20 @@ Note that RNDIS as such does not let you login to the device.<br>
 All produced FLIR devices has their own individual passwords.
 
 ### How to switch camera to RNDIS
-Switching USB mode (to RNDIS) requires some special steps.
-The one described here involves performing a request for a "unlock tool" for
-the specific camera from FLIR.<br>
-Contact FLIR service<br>
-You should then receive a special installer file, able of "unlocking" the FLIR Cx specific serial number.<br>
-Typical file name; _FLIR_oss_unlocker_1.2_894001234.run_ 
+Switching USB mode (to RNDIS) requires some special steps.<br>
+Also, for RNDIS to make sense, you need to have access to a usable username/password for the camera.<br>
+If you do not have username/password, take a look at:
+[Unlocker tool](unlock_tool.md)
 
-#### Unlock caveat
+#### unlocker tool installation
 **Note:** Although it is possible to unlock a (FLIR Cx) device for development, it is **NOT** recommended.<br>
-By unlocking the device, **warranty will be limited**, even if no additional steps to change software content is taken.<br>
-Although it should be possible to re-lock the device by a certified FLIR service center, this will come at a charge.
-
-#### unlock tool installation
-If you still want to unlock the (FLIR cx) device, here follows a description on how to do this:
-- Connect camera to a (linux) PC host using USB cable
-- Open _FLIR camera_ file system in a file browser
-- Browse to camera folder _FLIR Camera - Images - doupdate_ 
-- Drag / drop your received unlocker file ( _FLIR_oss_unlocker_1.2\_\<serial\>.run_) into this folder (from another file browser instance)<br>
-  The unlocker file will now automatically be installed.<br>
-  (There is a small instruction file in this location if you like to read more about this)
-- Note that by performing this installation of the unlocker file, you accept the license that comes with it.<br> (in essence: Do not deliberately wipe its install traces, do not try to mess up the FLIR camera application)<br> 
+See [Unlock caveat](unlock_tool.md#unlock-caveat).<br>
+If you still want to unlock the (FLIR cx) device, [read more here](unlock_tool.md)
   
 After successful installation of unlocker file, _RNDIS (+MTP)_ will then be set as USB mode in the FLIR C5 unit (until a factory default is performed).<br>
 
-Also, the root password is set to **0pened** (character "zero" instead of letter capital "O", followed by "pened") - valid until device is rebooted.<br>
+Also, the root password is temporarily set. You should change it.<br>
+[FLIR unlocker tool - usage](unlock_tool.md#usage)
 
 #### Host computer ip setup
 
