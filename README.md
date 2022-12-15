@@ -44,7 +44,7 @@ These parts are distributed in binary form (at factory) and are installed into t
 Open source for FLIR C5 is accessed using the [meta-flir-openmanifest](https://github.com/flir-cx/flir-yocto-openmanifest.git) repo (and applying proper commands). 
 Anyone is allowed to download, study and possibly build artifacts from the provided source.
 
-To be able to install and run the built artifacts on a target device (i.e. FLIR C5), the specific device needs to be 'unlocked'. (see below)
+To be able to install and run the built artifacts on a target device (i.e. FLIR C5), the specific device needs to be 'unlocked'. (see [FLIR unlocker tool](unlock_tool.md))
 
 Download
 --------
@@ -98,7 +98,7 @@ To download and execute generated code on a FLIR cx target, A USB connection is 
 Wi-Fi is also supported, See [WiFi backup-connection to target device](backup-connection.md)<br>
 
 #### Warning:
-Note: To access the FLIR C5 device as a developer, you will need to _**unlock**_ the device. Even if possible, this is **NOT** recommended.<br>
+Note: To access the FLIR C5 device as a developer, you will need to [_**unlock**_](unlock_tool.md) the device. Even if possible, this is **NOT** recommended.<br>
 You will be on your own, product warranty will be limited.<br>
 FLIR cannot take responsibility for the software quality anymore if uncontrolled software has been installed onto the device. Even if nothing is installed, this will be impossible to tell if the device has been unlocked.
 
