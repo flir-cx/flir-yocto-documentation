@@ -64,7 +64,7 @@ The read-only "underlay" contains the file system defined by _flir-image-sherloc
 (In a factory delivered FLIR C5 camera, the _flir-image-sherlock_ image based upon code in _meta-flir-base_ layer is extended with stuff from a non public _meta-flir-internal_ layer.<br>
 Typically this is about automated software updates, certificates and cloud login/sync.<br>
 Should you choose to install your own _flir-image-sherlock_ .ext4 image from your yocto build environment, you will lose the stuff from _meta-flir-internal_ )<br>
-But the FLIR C5 camera should still work.)<br>
+But the FLIR C5 camera application should still work.)<br>
 
 On top of the "underlay" there is an "overlay" mounted as read-write. Initially this is an empty ext4 file system partition.<br>
 All changes to the mounted rootfs will be seamlessly written as files into this overlay.<br>

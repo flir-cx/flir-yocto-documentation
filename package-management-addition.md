@@ -4,9 +4,11 @@ If you build your own _flir-image-sherlock_ image, you may try to add the "Image
 
 Add the following line to file _meta-flir-base/recipes-flir/images/flir-image-sherlock.bb_ (or in a _.bbappend_):<br>
 _IMAGE_FEATURES += " package-management"_ <br>
+(It should also be possible to add this line in *conf/local.conf*)<br>
 Then<br>
 _bitbake flir-image-sherlock_<br>
-You should now find a large number of files to inspect below _build_ec201/tmp/work/ec201-oe-linux-gnueabi/flir-image-sherlock/1.0-r0/rootfs/var/lib/opkg_<br>
+You should now find a large number of files to inspect below _build_ec201/tmp/work/ec201-oe-linux-gnueabi/flir-image/1.0-r0/rootfs/var/lib/opkg_<br>
+(or _build_ec201/tmp/work/ec201-oe-linux-gnueabi/flir-image-sherlock/1.0-r0/rootfs/var/lib/opkg_ depending on version built)<br>
 Example:<br>
 ~~~console
 $ cat tmp/work/ec201-oe-linux-gnueabi/flir-image-sherlock/1.0-r0/rootfs/var/lib/opkg/status 

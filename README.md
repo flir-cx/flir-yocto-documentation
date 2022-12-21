@@ -91,6 +91,11 @@ Main build target would be *flir-image-sherlock*. (i.e. *bitbake flir-image-sher
 Note that the disk space requirements for a build is quite large.<br>
 **70 GB** additional space is a **minimum** (!).<br>
 Other targets than *flir-image-sherlock* might be built. Study the yocto source tree.
+If returning to the project later on, or in another session, you may instead run command:
+~~~console
+source setup-environment build_ec201
+~~~
+Difference is that eventual changes to *conf/local.conf* are kept in this case
 
 Target connection
 -----------------
