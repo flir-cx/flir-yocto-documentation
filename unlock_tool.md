@@ -31,7 +31,7 @@ Typical file name; _FLIR_oss_unlocker_1.2_894001234.run_
 
 Limitations
 -----------
-To get the right to use the unlock tool, the connected license require that you do not intentionally remove any FLIR target markers installed by the tool.
+To get the right to use the unlock tool, the connected [license](LICENSE_unlocktool.txt) require that you do not intentionally remove any FLIR target markers installed by the tool.
 Such marker(s) makes it possible for FLIR camera application to check whether the device is "unlocked".<br>
 
 Comment:<br>
@@ -47,6 +47,7 @@ Usage
 - Drag / drop your received unlocker file ( _FLIR_oss_unlocker_1.2\_\<serial\>.run_) into this folder (from another file browser instance)<br>
   The unlocker file will now automatically be installed.<br>
   (There is a short instruction file in this location (_doupdate_) if you like to read more about this)
+- (Do not try to install an unlocker .run file intended for another serial number. Installation will then fail)
 
 **Note:** [Unlock caveat](unlock_tool.md#unlock-caveat) - Do you understand the implications?
 
@@ -69,15 +70,15 @@ Now connect to the camera device on _ssh_ using either using the newly establish
   _root@192.168.250.2's password:_<br>
   Enter: _0pened_<br>
   You are now supposed to get a shell prompt, typically;<br>
-  _root@ec201-0D26AC:~#_
+  _root@ec201-0D26AC:~#_<br>
   (hex digits are device MAC adress dependent)
 - Note that the root password ( _0pened_) is temporary and will be restored
   to device specific at reboot unless you now take some action<br>
   (it is always possible to reinstall the unlocker file).
-- Setting own password:<br>
+- Setting own password (run commands in camera device ssh session):<br>
   _umount /etc/shadow_<br>
   _passwd_<br>
-  (enter own root password - twice<br> 
+  (enter own root password - as prompted, twice<br> 
   You should get a success message)<br>
   _sync_<br>
   _reboot_<br>

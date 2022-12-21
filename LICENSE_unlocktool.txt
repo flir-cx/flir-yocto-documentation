@@ -1,0 +1,10 @@
+FLIR unlocker tool license       v1.0 2020-09-28
+==========================
+FLIR unlocker tool intended use is to unlock the device which it is configured
+for (serial number dependent).
+ 
+When installed into a FLIR camera the unlocker tool might install a "marker"
+inside the camera non volatile memory.
+
+Under this FLIR unlocker tool license is is not allowed to intentionally
+change or remove any installed "marker".
