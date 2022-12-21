@@ -20,9 +20,9 @@ Although it should be possible to re-lock the device by a certified FLIR service
 
 How to get an unlocker tool for your FLIR C5 device
 ---------------------------------------------------
-Contact FLIR service<br>
-Request a "FLIR C5 unlocker tool"<br>
+Contact [FLIR custhelp](request_tool.md) and request a "FLIR C5 unlocker tool"<br>
 Provide your personal data and your camera serial number.<br>
+
 You should receive a special installer file attached to an email.<br>
 This attachment should be able of "unlocking" the FLIR Cx specific serial number device as described on this page.<br>
 
