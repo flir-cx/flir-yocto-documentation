@@ -112,7 +112,7 @@ If you still want to connect to your device as a developer, please read more in 
 
 Target software disk layout
 ---------------------------
-The "disk"on the ec201 board is actually a 4 MB eMMC.
+The "disk"on the ec201 board is actually a 4 GB eMMC.
 This "disk" is partitioned as:
 
 ~~~console
