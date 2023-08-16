@@ -44,6 +44,7 @@ Usage
 - Open _FLIR camera_ file system in a file browser on your host PC.<br>
   (_FLIR camera_ should be visible from the PC as it is expected to use usbmode MTP).
 - Browse to camera folder _FLIR Camera - Images - doupdate_ 
+(on other cameras than FLIR C5, the folder might be: _FLIR Camera - Internal - doupdate_ )
 - Drag / drop your received unlocker file ( _FLIR_oss_unlocker_1.2\_\<serial\>.run_) into this folder (from another file browser instance)<br>
   The unlocker file will now automatically be installed.<br>
   (There is a short instruction file in this location (_doupdate_) if you like to read more about this)
