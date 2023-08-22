@@ -1,6 +1,6 @@
 Replace rootfs
 ==============
-When _bitbake flir-image-sherlock_ has been successfully run, you should find a _flir-image-sherlock-ec201.ext4_ in sub-folder _tmp/deploy/images/ec201_<br>
+When _bitbake flir-image_ has been successfully run, you should find a _flir-image-ec201.ext4_ in sub-folder _tmp/deploy/images/ec201_<br>
 Size of file is typically **340 MB**<br>
 
 ### File transfer to target
@@ -17,7 +17,7 @@ Filesystem                Size      Used Available Use% Mounted on
 tmpfs                   247.3M    200.0K    247.1M   0% /tmp
 root@ec201-0A13DC:/tmp# 
 ~~~
--> /tmp mount **is not big enough** for _flir-image-sherlock-ec201.ext4_.<br>
+-> /tmp mount **is not big enough** for _flir-image-ec201.ext4_.<br>
 
 We need a bigger mount. <br>
 Proposal is that you use "/FLIR/images"<br>
@@ -29,9 +29,9 @@ root@ec201-0A13DC:~#
 
 Use _scp_ or _sftp_ to transfer the .ext file to target, example:
 ~~~console
-$ scp tmp/deploy/images/ec201/flir-image-sherlock-ec201.ext4 root@192.168.250.2:/FLIR/images
+$ scp tmp/deploy/images/ec201/flir-image-ec201.ext4 root@192.168.250.2:/FLIR/images
 root@192.168.250.2's password:
-flir-image-sherlock-ec201.ext4                100%  324MB   3.7MB/s   01:28    
+flir-image-ec201.ext4                100%  324MB   3.7MB/s   01:28    
 $ 
 ~~~
 Make **sure** that operation result is OK (file transfered OK)<br>
@@ -56,19 +56,19 @@ This means that _system1_, i.e _/dev/mmcblk0p2_, is the free partition, that we 
 use _dd_ to copy the transfered .ext4 file as raw data into the free rootfs partition (as indicated from "check active partition").<br>
 **NOTE:** If you don't understand the difference between free and active partition, DO NOT PROCEED. You may harm your device and make it unusable.<br>
 Assuming that you:<br>
-- successfully transfered a _flir-image-sherlock-ec201.ext4_ file to _/FLIR/images_
+- successfully transfered a _flir-image-ec201.ext4_ file to _/FLIR/images_
 - Found out which rootfs partition is the free one (in the example, _/dev/mmcblk0p2_ is the free partition)
 
 You may now run the following command (from target ssh prompt, example):
 ~~~console
-root@ec201-0A13DC:~# dd if=/FLIR/images/flir-image-sherlock-ec201.ext4 of=/dev/mmcblk0p2 bs=1M
+root@ec201-0A13DC:~# dd if=/FLIR/images/flir-image-ec201.ext4 of=/dev/mmcblk0p2 bs=1M
 324+0 records in
 324+0 records out
 339738624 bytes (324.0MB) copied, 30.257324 seconds, 10.7MB/s
 root@ec201-0A13DC:~# 
 ~~~
 (You may try _dd_ (without parameters) for a brief usage text).<br>
-The binary content of flir-image-sherlock.ext4 will be written into the free rootfs partition.<br>
+The binary content of flir-image-ec201.ext4 will be written into the free rootfs partition.<br>
 To check it, you may try to do a temporary mount of the free partition,<br>
 Type (example):<br>
 ~~~console

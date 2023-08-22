@@ -2,7 +2,7 @@ Working with packages
 =====================
 
 #### yocto generated packages
-When you successfully _bitbake flir-image-sherlock_ (or "bitbake" with other recipes), you will find generated ".ipk" installable package files below _build_ec201/tmp/deploy/ipk_<br>
+When you successfully _bitbake flir-image_ (or "bitbake" with other recipes), you will find generated ".ipk" installable package files below _build_ec201/tmp/deploy/ipk_<br>
 Below here there is an additional subdirectory level defining "classes" of packages.<br>
 
 | Folder name            | targeted content                                  |
@@ -12,12 +12,12 @@ Below here there is an additional subdirectory level defining "classes" of packa
 | cortexa7hf-neon-mx7ulp | arm packages (non ec201 specific, mx7ulp specific)|
 | ec201                  | arm packages, ec201 specific                      |
 
-As an example, _flir-image-sherlock_ content is defined by file _meta-flir-base/recipes-flir/images/flir-image-sherlock.bb_<br>
+As an example, _flir-image_ content is defined by file _meta-flir-base/recipes-flir/images/flir-image.bb_<br>
 This _.bb_ file contains (among other things) addition of a package called _umtp-responder_<br>
 (umtp-responder is a software service that implements "usb media transfer protocol" i.e. file access using USB).<br>
 The package .ipk installer for _umtp-responder_ could be found below _build_ec201/tmp/deploy/ipk/cortexa7hf-neon_:
 ~~~console
-$ grep umtp-responder sources/meta-flir-base/recipes-flir/images/flir-image-sherlock.bb
+$ grep umtp-responder sources/meta-flir-base/recipes-flir/images/flir-image.bb
 ...
     udev-extraconf \
     umtp-responder \
@@ -59,11 +59,11 @@ Before installing any packages into your FLIR C5 device, you should know somethi
 
 The FLIR C5 uses a overlayfs type of rootfs. This must be taken into account in some aspects if/when you try to install or remove your own built packages.
 
-The read-only "underlay" contains the file system defined by _flir-image-sherlock_<br>
+The read-only "underlay" contains the file system defined by _flir-image_<br>
 
-(In a factory delivered FLIR C5 camera, the _flir-image-sherlock_ image based upon code in _meta-flir-base_ layer is extended with stuff from a non public _meta-flir-internal_ layer.<br>
+(In a factory delivered FLIR C5 camera, the _flir-image_ image based upon code in _meta-flir-base_ layer is extended with stuff from a non public _meta-flir-internal_ layer.<br>
 Typically this is about automated software updates, certificates and cloud login/sync.<br>
-Should you choose to install your own _flir-image-sherlock_ .ext4 image from your yocto build environment, you will lose the stuff from _meta-flir-internal_ )<br>
+Should you choose to install your own _flir-image_ .ext4 image from your yocto build environment, you will lose the stuff from _meta-flir-internal_ )<br>
 But the FLIR C5 camera application should still work.)<br>
 
 On top of the "underlay" there is an "overlay" mounted as read-write. Initially this is an empty ext4 file system partition.<br>
@@ -77,7 +77,7 @@ root@ec201-0A13DC:~# mount | grep aufs | grep -v sftp
 none on / type overlay (rw,relatime,lowerdir=/tmp/aufs/rofs,upperdir=/tmp/aufs/rwfs/upper,workdir=/tmp/aufs/rwfs/workdir)
 root@ec201-0A13DC:~#
 ~~~
-(The /aufs/rofs mount will toggle between /dev/mmcblk0p2 and /dev/mmcblk0p3  if/when you install a new version of the "underlay" - _flir-image-sherlock_ ).
+(The /aufs/rofs mount will toggle between /dev/mmcblk0p2 and /dev/mmcblk0p3  if/when you install a new version of the "underlay" - _flir-image_ ).
 
 ##### What is the impact of a overlayfs?
 1. If you write a new file somewhere into the combined file system, the file will actually be written into the _overlay_. It will be present within the combined file system.<br>
@@ -149,7 +149,7 @@ appkit - 1.0.5-r280860
 prodkit - 1.0.3.15-r280286
 root@ec201-0A13DC:~#
 ~~~
-As stated previously, all pre-populated packages in _flir-image-sherlock_ are missing here ([even if installed](README.md#rootfs-installable-packages)).<br>
+As stated previously, all pre-populated packages in _flir-image_ are missing here ([even if installed](README.md#rootfs-installable-packages)).<br>
 
 #### File transfer to target
 To install a package, start by transfering its .ipk file to the target.<br>

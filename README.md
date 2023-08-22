@@ -119,13 +119,13 @@ MACHINE=ec201 source ./flir-setup-release.sh -b build_ec201
 (replace *ec201* with other board if ec201 is not the board you are building for)
 
 Now it is possible to build code for the "ec201" using *bitbake* commands. Implicitely needed artifacts will be built when needed.<br>
-Main build target would be *flir-image-sherlock*. (i.e. *bitbake flir-image-sherlock*) for yocto2.5/ec201. This recipe will build almost all components, including the linux kernel and a standard populated rootfs.
+Main build target would be *flir-image*. (i.e. *bitbake flir-image*) for yocto2.5/ec201 (previously *flir-image-sherlock*). This recipe will build almost all components, including the linux kernel and a standard populated rootfs.
 
 (When using yocto3.3 branch, the main build target will be *flir-image*)
 
 Note that the disk space requirements for a build is quite large.<br>
 **70 GB** additional space is a **minimum** (!).<br>
-Other targets than *flir-image-sherlock* might be built. Study the yocto source tree.
+Other targets than *flir-image* might be built. Study the yocto source tree.
 If returning to the project later on, or in another session, you may instead run command:
 ~~~console
 source setup-environment build_ec201
@@ -198,7 +198,7 @@ Installable software components
 -------------------------------
 From within yocto, it is possible to build "all" the open source content intended for the product board.<br>
 
-All software pre-populated into _flir-image-sherlock_(or flir-image) is rebuildable using https://github.com/flir-cx/flir-yocto-openmanifest <br>
+All software pre-populated into _flir-image_(or flir-image-sherlock) is rebuildable using https://github.com/flir-cx/flir-yocto-openmanifest <br>
 It is possible to replace single or multiple package(s), or even replace the complete rootfs (and/or u-boot bootloader) in your device using the techniques described in this document collection.<br>
 
 Specifically this is true for GPLv3/LGPLv3 licensed packages.<br>
@@ -207,7 +207,7 @@ Specifically this is true for GPLv3/LGPLv3 licensed packages.<br>
 To find out which packages are really installed into _flir-image-sherlock / flir-image_ (and thus replaceable), generate your own package database using information as described by: [package management addition to rootfs](package-management-addition.md).<br>
 
 #### rootfs
-As indicated, build of a "flir-image-sherlock" ("flir-image") will generate an artifact (_*.ext4_) that could be used to replace the complete base image within rootfs1/rootfs2.
+As indicated, build of a "flir-image" ("flir-image-sherlock") will generate an artifact (_*.ext4_) that could be used to replace the complete base image within rootfs1/rootfs2.
 This image file will contain a linux kernel, device tree and a populated rootfs.
 
 See [replace-rootfs](replace-rootfs.md) for details.<br>
@@ -216,23 +216,23 @@ However, replacing the complete rootfs is **NOT** recommended (even if it techni
 - If your generated binary .ext4 file is "bad", or if installation fails for some reason, it is likely that you will brick your device.
 
 #### u-boot
-Will be generated implicitely by running _bitbake flir-image-sherlock_/ flir-iamge or by explicitely running: _bitbake u-boot_<br>
+Will be generated implicitely by running _bitbake flir-image_/ flir-image-sherlock or by explicitely running: _bitbake u-boot_<br>
 See [replace-u-boot](replace-u-boot.md) for details.<br>
 However, replacing u-boot is **NOT** recommended (even if it technically has been tested at FLIR and "should" work).
 - If your generated binary u-boot.imx file is "bad", wrong file used or if installation fails for some reason, it is likely that you will brick your device.
 
 #### rootfs installable packages
-rootfs as defined by _flir-image-sherlock_ / filr-image contains a large number of various packages.<br> For details, see source files in _meta-flir-base_<br>
+rootfs as defined by _flir-image_ (/ flir-image-sherlock) contains a large number of various packages.<br> For details, see source files in _meta-flir-base_<br>
 The file _meta-flir-base/conf/distro/flir.conf_ declares: _PACKAGE_CLASSES = "package_ipk"_ as opposed to "rpm").<br>
 This means that the packages that are built within the flir-yocto environment will generate components in the format ".ipk".<br>
 
 
-_flir-image-sherlock_ (among other packages) contains a package called _okpg_.<br>
+_flir-image_ (among other packages) contains a package called _okpg_.<br>
 opkg is a utility to manage installation/removal of (.opk/.ipk) packages in runtime.<br>
 (Brief background could be found for instance [here](https://en.wikipedia.org/wiki/Opkg).)<br><br>
 With opkg, package installation state is kept in a "database" inside the rootfs at _/var/lib/opkg_ (text based).<br>
-Even if would be possible to pre-populate this database with all packages installed into _flir-image-sherlock_ at build time, FLIR selected to skip this prepopulation (!).<br>
-The reason is that this "database" will take a significant part of the disk space. For _flir-image-sherlock_ the required space for a populated opkg database would be around 7 MB.<br>
+Even if would be possible to pre-populate this database with all packages installed into _flir-image_ at build time, FLIR selected to skip this prepopulation (!).<br>
+The reason is that this "database" will take a significant part of the disk space. For _flir-image_ the required space for a populated opkg database would be around 7 MB.<br>
 
 If you connect to a (unlocked, not manipulated) FLIR C5 camera and try command _opkg list_ you would typically find 2 installed packages;
 ~~~console
