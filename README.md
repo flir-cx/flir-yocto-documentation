@@ -148,7 +148,7 @@ If you still want to connect to your device as a developer, please read more in 
 Target software disk layout
 ---------------------------
 The "disk"on the ec201 board is actually a 4 GB eMMC.
-(The same is true for the *ec302* board. *eoco* board is 8 GB, but basic layout is the same - larger storage).
+(The same is true for the *ec302* and *evco* boards. *eoco* board is 8 GB, but basic layout is the same - larger storage).
 
 This "disk" is partitioned as:
 
@@ -192,7 +192,9 @@ Note that the root filesystem ("none on / ") is mounted as an overlay file syste
 Partition 2 and 3 contains 2 versions of a readonly .ext4 image (from flir-image). <br>
 On top of this there is a "overlay" "rw" file system that contains changes to the base image.<br>
 /FLIR mount points contains FLIR camera application + data (closed source).<br>
-Please do not touch content within these folders deliberately, except content below /FLIR/images that could be considered "open"
+Please do not touch content within these folders deliberately, except content below /FLIR/images (or /FLIR/internal) that could be considered "open"
+For some targets, the mounted name for partition /dev/mmcblk0p7 might be "/FLIR/internal" instead of "/FLIR/images"
+This is true for devices that are equipped with a physical SDcard for user file storage (i.e. images or video clips). Typically FLIR Exx, FLIR Txxx, FLIR G-Series
 
 Installable software components
 -------------------------------

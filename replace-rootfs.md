@@ -20,12 +20,13 @@ root@ec201-0A13DC:/tmp#
 -> /tmp mount **is not big enough** for _flir-image-ec201.ext4_.<br>
 
 We need a bigger mount. <br>
-Proposal is that you use "/FLIR/images"<br>
+Proposal is that you use "/FLIR/images" when this name is used for mmcblk0p7 partition.<br>
 ~~~console
-root@ec201-0A13DC:~# df -h | grep images
+root@ec201-0A13DC:~# df -h | grep mmcblk0p7
 /dev/mmcblk0p7            1.5G    327.1M      1.1G  23% /FLIR/images
 root@ec201-0A13DC:~#
 ~~~
+If you instead find /FLIR/internal here, use this folder instead
 
 Use _scp_ or _sftp_ to transfer the .ext file to target, example:
 ~~~console
