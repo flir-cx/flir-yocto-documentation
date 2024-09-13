@@ -37,7 +37,7 @@ Software is running on this FLIR board (called eoco). The software runs using li
 
 [FLIR E96](https://www.flir.eu/products/e96/), [FLIR E86](https://www.flir.eu/products/e86/), [FLIR E54](https://www.flir.eu/products/e54/) are examples of FLIR Exx cameras
 
-[FLIR GF77](https://www.flir.eu/products/gf77/) is a "gas" variant of T6xx (special detector)
+[FLIR GF77](https://www.flir.eu/products/gf77/) is a "gas" variant of T5xx (special detector)
 
 These cameras are based on different variants of an uncooled IR detector. 
 
