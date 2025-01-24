@@ -147,8 +147,8 @@ If you still want to connect to your device as a developer, please read more in 
 
 Target software disk layout
 ---------------------------
-The "disk"on the ec201 board is actually a 4 GB eMMC.
-(The same is true for the *ec302* and *evco* boards. *eoco* board is 8 GB, but basic layout is the same - larger storage).
+The "disk" on the ec201 board is actually a 4 GB eMMC. The same is true for the *ec302* and *evco* boards.
+*eoco* board eMMC is 8 GB and *ec702* is 16 GB. Basic layout for these boards are the same, the storage partition is just larger.
 
 This "disk" is partitioned as:
 
